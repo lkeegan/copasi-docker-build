@@ -3,14 +3,16 @@ MAINTAINER Liam Keegan "liam@keegan.ch"
 
 # compile COPASI on ubuntu 19.04 with Qt5
 
+# install apt dependencies
 RUN apt-get update && apt-get install -y \
-    git \
     cmake \
+    git \
     g++ \
     libgl1-mesa-dev \
     libglu1-mesa-dev \
-    qt5-default \
+    libqt5datavisualization5-dev \
     libqt5svg5-dev \
+    qt5-default \
     uuid-dev
 
 # clone & compile COPASI dependencies
@@ -26,7 +28,6 @@ RUN git clone https://github.com/lkeegan/COPASI /var/src/COPASI \
     && cmake \
     -DCOPASI_DEPENDENCY_DIR=/var/src/copasi-dependencies/bin \
     -DSELECT_QT=Qt5 \
-    -DQT_USE_TEXTBROWSER=OFF \
     .. \
     && make \
     && make install
@@ -35,4 +36,4 @@ RUN git clone https://github.com/lkeegan/COPASI /var/src/COPASI \
 # TODO
 
 # run COPASI
-RUN ./CopasiSE --version
+RUN CopasiSE -h
