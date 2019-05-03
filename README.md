@@ -1,6 +1,6 @@
 # copasi-docker-build
 Docker build that compiles COPASI from source on Ubuntu 19.04 with Qt5
 
-Available on (docker hub)[https://hub.docker.com/r/lkeegan/copasi-docker-build]
+Serves as a reference set of dependencies and cmake options to compile COPASI, using the instructions from https://github.com/copasi/COPASI and https://github.com/copasi/copasi-dependencies.
 
-`docker pull lkeegan/copasi-docker-build`
+Available as a pre-built image on [docker hub](https://hub.docker.com/r/lkeegan/copasi-docker-build) via `docker pull lkeegan/copasi-docker-build`
