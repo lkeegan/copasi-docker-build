@@ -12,6 +12,9 @@ RUN apt-get update && apt-get install -y \
     libglu1-mesa-dev \
     libqt5datavisualization5-dev \
     libqt5svg5-dev \
+    ninja-build \
+    python-dev \
+    swig \
     qt5-default \
     uuid-dev
 
@@ -26,11 +29,22 @@ RUN git clone https://github.com/lkeegan/COPASI /var/src/COPASI \
     && mkdir /var/src/COPASI/build \
     && cd /var/src/COPASI/build \
     && cmake \
+    -G Ninja \
     -DCOPASI_DEPENDENCY_DIR=/var/src/copasi-dependencies/bin \
     -DSELECT_QT=Qt5 \
+    -DENABLE_PYTHON=ON \
+    -DPYTHON_EXECUTABLE=/usr/bin/python \
+    -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython2.7.so \
+    -DBUILD_CATCH_TESTS=ON \
+    -DBUILD_FRANKS_TESTSUITE=ON \
+    -DBUILD_SBML_TESTSUITE=ON \
+    -DBUILD_TESTS=ON \
+    -DBUILD_SEMANTIC_TESTSUITE=ON \
+    -DBUILD_STEADY_STATE_RUNNER=OFF \
+    -DBUILD_STOCHASTIC_TESTSUITE=ON \
+    -DBUILD_MCA_RUNNER=OFF \
     .. \
-    && make \
-    && make install
+    && ninja install
 
 # run tests
 # TODO
