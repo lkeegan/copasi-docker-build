@@ -9,7 +9,7 @@ notifications:
 jobs:
   include:
     - script: |
-        docker run -it lkeegan/copasi-docker-build -v ${TRAVIS_BUILD_DIR}:/repo.git /bin/bash -e -c '
+        docker run -it -v ${TRAVIS_BUILD_DIR}:/repo.git lkeegan/copasi-docker-build /bin/bash -e -c '
         ls
         pwd
         git clone https://github.com/copasi/COPASI /var/src/COPASI
