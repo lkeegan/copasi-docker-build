@@ -1,0 +1,30 @@
+language: cpp
+
+services:
+  - docker
+
+jobs:
+  include:
+    - script: |
+        docker run -it lkeegan/copasi-docker-build /bin/bash -c '
+        git clone https://github.com/copasi/COPASI /var/src/COPASI
+        mkdir /var/src/COPASI/build
+        cd /var/src/COPASI/build
+        cmake \
+          -G Ninja \
+          -DCOPASI_DEPENDENCY_DIR=/var/src/copasi-dependencies/bin \
+          -DSELECT_QT=Qt5 \
+          -DENABLE_PYTHON=ON \
+          -DPYTHON_EXECUTABLE=/usr/bin/python \
+          -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython2.7.so \
+          -DBUILD_CATCH_TESTS=ON \
+          -DBUILD_SBML_TESTSUITE=ON \
+          -DSBML_TESTSUITE_RUN=OFF \
+          -DSBML_TESTSUITE_THREADS=2 \
+          -DSBML_TESTSUITE_CASES_DIR=/var/src/sbml-test-suite/cases/semantic \
+          -DBUILD_TESTS=ON \
+          -DBUILD_TESTING=ON \
+          ..
+        ninja
+        ninja test
+        '
