@@ -1,4 +1,4 @@
-# copasi-docker-build
+# copasi-docker-build [![Build Status](https://travis-ci.org/lkeegan/copasi-docker-build.svg?branch=master)](https://travis-ci.org/lkeegan/copasi-docker-build)
 This repo contains two items:
 
   - `dockerfile`
@@ -9,7 +9,6 @@ This repo contains two items:
     - this runs the docker image on travis
     - it clones and compiles COPASI using this image
     - then runs the tests
-
 
 Docker build that compiles COPASI from source on Ubuntu 19.04 with Qt5
 
